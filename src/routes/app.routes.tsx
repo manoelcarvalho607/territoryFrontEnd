@@ -5,10 +5,10 @@ import Menu from '../views/Menu';
 
 const AuthStack = createStackNavigator();
 
-const AppRoutes = () => {
+const AppRoutes:React.FC = () => (
   <AuthStack.Navigator>
-    <AuthStack.Screen name="Menu" component={Menu} title={'MENU DE OPERAÇÕES'} />
+    <AuthStack.Screen name="Menu" component={Menu}  />
   </AuthStack.Navigator>
-};
+);
 
 export default AppRoutes;

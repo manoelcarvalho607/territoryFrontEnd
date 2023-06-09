@@ -10,8 +10,9 @@ import iconRed from '../../../../assets/iconRed.png';
 
 
 export default function Header({navigation, option}) {
-    const {empresa, setEmpresa, statusSino, setStatusSino} = useContext(GlobalContext);
-    const {perfilUsuario, setPerfilUsuario, iconLogout, setIconLogout} = useContext(GlobalContext);
+    const { statusSino, setStatusSino, auth, setAuth, authTrue, setAuthTrue,
+        perfilUsuario, setPerfilUsuario, iconLogout, setIconLogout} = useContext(GlobalContext);
+   
     
 
 
@@ -19,6 +20,8 @@ export default function Header({navigation, option}) {
         navigation.navigate('Home')
         setPerfilUsuario(null);
         setIconLogout(false);
+        setAuth('');
+        setAuthTrue(false);
     }
 
     function notificacao() {

@@ -5,10 +5,10 @@ import Home from '../views/Home';
 
 const AuthStack = createStackNavigator();
 
-const AuthRoutes = () => {
+const AuthRoutes: React.FC = () => (
   <AuthStack.Navigator>
-    <AuthStack.Screen name="Home" component={Home} title={'LOGIN DE ACESSO'} />
+    <AuthStack.Screen name="Home" component={Home}  />
   </AuthStack.Navigator>
-};
+);
 
 export default AuthRoutes;

@@ -15,12 +15,13 @@ const { width, height } = Dimensions.get('window');
 export default function Home({navigation}) {
 
 
-  const usuario = {id: 1, nome: 'Robério', phone: '14997607802', senha: '12345'}
+  const usuario = [{id: 1, nome: 'Robério', phone: '14997607802', senha: '12345', schema: 'user'},
+                  {id: 2, nome: 'jonata', phone: '14997607801', senha: '1234', schema: 'admin'}]
     
     const [carga, setCarga] = useState(false);
     const [telefone, setTelefone] = useState('');
     const [senha, setSenha] = useState('');
-    const {perfilUsuario, setPerfilUsuario} = useContext(GlobalContext);
+    const {perfilUsuario, setPerfilUsuario, auth, setAuth} = useContext(GlobalContext);
 
     const handleTelefoneChange = (novoTelefone) => {
         setTelefone(novoTelefone);
@@ -41,16 +42,29 @@ export default function Home({navigation}) {
             Alert.alert("Informe o Telefone Completo");
             return;
         }
-        // const url1 = api+"/perfil/buscaportelefone/"+telefoneLimpo;
-        
-        if(telefoneLimpo != usuario.phone) {
-          Alert.alert("Usuário não cadastrado!");
-        } else {
-          setCarga(false);
-          setTelefone(telefone);
-          setPerfilUsuario(usuario);
 
+        // const url1 = api+"/perfil/buscaportelefone/"+telefoneLimpo;
+
+        response = usuario.filter(item => item.phone === telefoneLimpo)
+                            .map((item) => item.phone)
+          console.log(response)
+
+        if(telefoneLimpo != response) {
+          Alert.alert("Usuário não cadastrado!");
+          setCarga(true);
+        } else {
+          usuario.filter(item => item.phone === telefoneLimpo)
+             .map((user) => {
+              setCarga(false);
+              setTelefone(user.phone);
+              setPerfilUsuario(user);
+              setAuth(user.schema);
+              console.log("dados: " + JSON.stringify(user))
+             })
+          
         }
+      
+    
        
 
         // fetch(url1)

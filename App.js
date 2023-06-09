@@ -1,9 +1,10 @@
+import Index from './src/Index';
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 
 import Header from './src/views/Componentes/Header';
-import GlobalContextProvider from './src/GlobalContext';
+ import GlobalContextProvider from './src/GlobalContext';
 
 
 import Home from './src/views/Home';
@@ -66,7 +67,11 @@ const Routes = createAppContainer(AppNavigator);
 
 
 
-export default function App({ navigation }) {
-  return <GlobalContextProvider><Routes/></GlobalContextProvider>
-
+export default function App() {
+  return (
+    <GlobalContextProvider>
+      <Routes/>
+    </GlobalContextProvider>
+    
+  )
 }

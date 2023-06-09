@@ -15,11 +15,11 @@ export default function Menu({ navigation }){
   
   const [carga, setCarga] = useState(false);
   const { width, height } = Dimensions.get('window');
-  const {perfilUsuario, setPerfilUsuario, setIconLogout} = useContext(GlobalContext);
+  const {perfilUsuario, setPerfilUsuario, setIconLogout, auth, setAuth, authTrue, setAuthTrue} = useContext(GlobalContext);
   const [tamanhoCard, setTamanhoCard] = useState(132);
   const [espaco, setEspaco] = useState(18);
   const [os, setOs] = useState('ios');
-
+  
   useEffect(() => {
 
     setOs(Platform.OS === 'ios' ? 'IOS' : 'ANDROID');
@@ -33,7 +33,20 @@ export default function Menu({ navigation }){
      setTamanhoCard(tamanho);
      setEspaco(esp);
      setIconLogout(true);
+     authUser();
    }, []);
+
+
+     function authUser(){
+       if(auth  === 'admin') {
+          setAuthTrue(true);
+        } else {
+        console.log(authTrue);
+       }
+   }
+
+  
+   
 
 
    function registerAdmin() {
@@ -64,18 +77,28 @@ export default function Menu({ navigation }){
             <Header navigation={navigation}/>
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={os === 'IOS' ? 50 : -130} >
                 <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent:'center'}} keyboardShouldPersistTaps='handled'>
-                  <View style={{alignItems:'center', height:'100%', alignContent:'center'}}>
+                  { authTrue ? (
+                        <View style={{alignItems:'center', height:'100%', alignContent:'center'}}>
+                            <View style={{height:espaco+(os === 'IOS' ? 10 : 20)}} />
+                            <SuperCard acao={registerAdmin} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR ADMIN'} />
+                            <View style={{height:espaco}} /> 
+                            <SuperCard acao={registerUser} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR USUÁRIO'} />
+                            <View style={{height:espaco}} /> 
+                            <SuperCard acao={registerMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR MAPA'} />
+                            <View style={{height:espaco}} /> 
+                            <SuperCard acao={requestMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'SOLICITAR MAPA'} />
+                            <View style={{height:espaco}} /> 
+                        </View>
+                  ) : (
+                    <View style={{alignItems:'center', height:'100%', alignContent:'center'}}>
                       <View style={{height:espaco+(os === 'IOS' ? 10 : 20)}} />
-
-                        <SuperCard acao={registerAdmin} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR ADMIN'} />
-                        <View style={{height:espaco}} /> 
-                        <SuperCard acao={registerUser} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR USUÁRIO'} />
-                        <View style={{height:espaco}} /> 
-                        <SuperCard acao={registerMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR MAPA'} />
-                        <View style={{height:espaco}} /> 
-                        <SuperCard acao={requestMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'SOLICITAR MAPA'} />
-                        <View style={{height:espaco}} /> 
+                      <SuperCard acao={requestMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'SOLICITAR MAPA'} />
+                      <View style={{height:espaco}} /> 
                   </View>
+
+
+                  )}
+               
                   <View style={{height:espaco}} /> 
                 
                 </ScrollView>
