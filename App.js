@@ -1,4 +1,3 @@
-import Index from './src/Index';
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
@@ -9,7 +8,7 @@ import Header from './src/views/Componentes/Header';
 
 import Home from './src/views/Home';
 import Menu from './src/views/Menu';
-import RegisterAdmin from './src/views/RegisterAdmin';
+import RegisterGroup from './src/views/RegisterGroup';
 import RegisterMap from './src/views/RegisterMap';
 import RegisterUser from './src/views/RegisterUser';
 import RequestMap from './src/views/RequestMap';
@@ -28,13 +27,13 @@ const AppNavigator = createStackNavigator(
         Menu: {
           screen: Menu,
           navigationOptions: {
-            title: 'MENU DE OPERAÇÕES',
+            title: 'MENU',
           },
         },
-        RegisterAdmin: {
-          screen: RegisterAdmin,
+        RegisterGroup: {
+          screen: RegisterGroup,
           navigationOptions: {
-            title: 'REGISTRO DE ADMIN',
+            title: 'REGISTRO DE GRUPO',
           },
         },
         RegisterMap: {
@@ -52,7 +51,7 @@ const AppNavigator = createStackNavigator(
           RequestMap: {
             screen: RequestMap,
             navigationOptions: {
-              title: 'SOLICITAR MAPA DE TERRITÓRIO',
+              title: 'MEU TERRITÓRIO',
             },
           }
        },

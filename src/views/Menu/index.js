@@ -49,11 +49,12 @@ export default function Menu({ navigation }){
    
 
 
-   function registerAdmin() {
-    navigation.navigate("RegisterAdmin");
-   }
+   
    function registerUser() {
     navigation.navigate("RegisterUser");
+   }
+   function registerGroup() {
+    navigation.navigate("RegisterGroup");
    }
    function registerMap() {
     navigation.navigate("RegisterMap");
@@ -80,19 +81,19 @@ export default function Menu({ navigation }){
                   { authTrue ? (
                         <View style={{alignItems:'center', height:'100%', alignContent:'center'}}>
                             <View style={{height:espaco+(os === 'IOS' ? 10 : 20)}} />
-                            <SuperCard acao={registerAdmin} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR ADMIN'} />
-                            <View style={{height:espaco}} /> 
                             <SuperCard acao={registerUser} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR USUÁRIO'} />
                             <View style={{height:espaco}} /> 
-                            <SuperCard acao={registerMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR MAPA'} />
+                            <SuperCard acao={registerGroup} icone={2} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR GRUPO'} />
                             <View style={{height:espaco}} /> 
-                            <SuperCard acao={requestMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'SOLICITAR MAPA'} />
+                            <SuperCard acao={registerMap} icone={3} largura={width-50} altura={tamanhoCard} titulo={'REGISTRAR MAPA'} />
+                            <View style={{height:espaco}} /> 
+                            <SuperCard acao={requestMap} icone={4} largura={width-50} altura={tamanhoCard} titulo={'MEU TERRITÓRIO'} />
                             <View style={{height:espaco}} /> 
                         </View>
                   ) : (
                     <View style={{alignItems:'center', height:'100%', alignContent:'center'}}>
                       <View style={{height:espaco+(os === 'IOS' ? 10 : 20)}} />
-                      <SuperCard acao={requestMap} icone={1} largura={width-50} altura={tamanhoCard} titulo={'SOLICITAR MAPA'} />
+                      <SuperCard acao={requestMap} icone={4} largura={width-50} altura={tamanhoCard} titulo={'MEU TERRITÓRIO'} />
                       <View style={{height:espaco}} /> 
                   </View>
 

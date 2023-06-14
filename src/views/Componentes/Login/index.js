@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import styles from './style';
-import Botao from '../Botao';
+import Button from '../Button';
 
 
 
@@ -50,7 +50,7 @@ export default function Login({titulo, dados, onCadastrar, onLogar, onTelefoneCh
 
             <View style={{flex:1, flexDirection:'row', overflow:'hidden'}}>
                 <View style={{width:20}} />
-                <Botao acao={onLogar} largura={150} altura={45} titulo={'ACESSAR'} />
+                <Button acao={onLogar} largura={150} altura={45} titulo={'ACESSAR'} />
             </View>
     </View>
 

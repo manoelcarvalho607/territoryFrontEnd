@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView,Image
 import Header from '../Componentes/Header';
 import Login from '../Componentes/Login';
 import styles from './style';
-import Footer from '../Componentes/Footer';
+import FooterMenu from '../Componentes/FooterMenu';
 import api from '../../services/api';
 import map from '../../../assets/mapa.jpg';
 import { GlobalContext } from '../../GlobalContext';
@@ -27,11 +27,13 @@ export default function RegisterUser({ navigation }) {
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -130} >
                
                <View style={styles.container}>
-                <Text>TELA EM DESENVOLVIMENTO</Text>
-               </View>
+                  <View style={styles.title}>
+                    <Text style={styles.font}>Nenhum território em aberto</Text>
+                  </View>
+                </View>
 
             </KeyboardAvoidingView>
-            <Footer />
+            <FooterMenu />
           </View>
        </View>
 

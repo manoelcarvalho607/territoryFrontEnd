@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import styles from './style';
 
 
-export default function Botao({cor, titulo, acao, largura, altura }){
+export default function Button({cor, titulo, acao, largura, altura }){
 
     return(
         <TouchableOpacity onPress={acao}>

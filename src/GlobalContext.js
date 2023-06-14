@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-
+import * as ImagePicker from 'expo-image-picker';
 export const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
@@ -9,7 +9,8 @@ const GlobalContextProvider = ({ children }) => {
     const [iconLogout, setIconLogout] = useState(false);
     const [ auth, setAuth] = useState('');
     const [authTrue, setAuthTrue] = useState(false);
-
+    const [ modalVisible, setModalVisible] = useState(false);
+    const [image, setImage ] = useState(null);
     return (
         <GlobalContext.Provider value={{
             globalVariable, setGlobalVariable,
@@ -17,7 +18,9 @@ const GlobalContextProvider = ({ children }) => {
             statusSino, setStatusSino,
             iconLogout, setIconLogout,
             auth, setAuth,
-            authTrue, setAuthTrue
+            authTrue, setAuthTrue,
+            modalVisible, setModalVisible,
+            image, setImage
         }}>
         {children}
         </GlobalContext.Provider>

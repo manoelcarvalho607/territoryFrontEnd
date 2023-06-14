@@ -8,48 +8,27 @@ import api from '../../services/api';
 import map from '../../../assets/mapa.jpg';
 import { GlobalContext } from '../../GlobalContext';
 import SuperCard from '../Componentes/SuperCard';
-import  UploadImage from '../Componentes/UploadImage';
-import * as ImagePicker from 'expo-image-picker';
 import Button from '../Componentes/Button';
 
-export default function RegisterMap({ navigation }) {
+export default function RegisterGroup({ navigation }) {
 
   const [carga, setCarga] = useState(false);
   const { width, height } = Dimensions.get('window');
-  const {image, setImage} = useContext(GlobalContext);
-  const [nameNeighborhood, setNameNeighborhood] = useState('');
-  const [numberMap, setNumberMap] = useState('');
+  const [ nameGroup, setNameGroup] = useState('');
   const [message, setMessage] = useState('');
 
-  const registerMap = () => {
-
-    if(image === null) {
-      Alert.alert("Adicione um mapa");
+  function registerGroup() {
+    if(nameGroup === '') {
+      Alert.alert("Informe o nome do Grupo");
       return;
     }
 
-    if(nameNeighborhood === '') {
-      Alert.alert("Informe o bairro");
-      return;
-    }
+    
 
-    if(numberMap === '') {
-      Alert.alert("Informe o número do território");
-      return;
-    }
-
- 
-
-    console.log(image)
-    console.log(nameNeighborhood)
-    console.log(numberMap)
-
+    console.log("dados :" + nameGroup)
     setMessage("Cadastro feito com sucesso!");
-    setImage(null)
-    setNameNeighborhood('')
-    setNumberMap('')
-
-
+    setNameGroup('');
+   
     setTimeout(() => {
       navigation.navigate('Menu');
       setMessage('');
@@ -90,7 +69,6 @@ export default function RegisterMap({ navigation }) {
     // .catch(error => {Alert.alert(error);setCarga(false); return});
   }
 
-
     return (
         <View style={{flex : 1}} >
 
@@ -102,22 +80,19 @@ export default function RegisterMap({ navigation }) {
           <View style={{flex:1}}>
             <Header navigation={navigation}/>
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -130} >
-            <ScrollView>
-               <View style={styles.container}>
-                  <View style={styles.box1}>
-                      <UploadImage/>
-                  </View>
-                  <View style={{height: 15}}></View>
-                  <TextInput style={styles.input} value={nameNeighborhood} placeholder={'Informe o nome do bairro'} onChangeText={setNameNeighborhood}/>
-                  <View style={{height:20}} />
-                  <TextInput style={styles.input} value={numberMap} placeholder={'Informe o número do mapa'} onChangeText={setNumberMap}/>
-                  <View style={{height:20}} />
-                  <Text style={{fontSize:20, alignItems: 'center'}}>{message}</Text>
-                  <View style={{height:20}} />
-                  <Button acao={() => { registerMap() }} largura={320} altura={45} titulo={'CADASTRAR'}></Button>
-                  <View style={{height:20}} />
-               </View>
-            </ScrollView>
+                <ScrollView contentContainerStyle={{ flexGrow: 1}} keyboardShouldPersistTaps='handled'>
+                    <View style={{alignItems:'center', marginTop:20}}>
+                        <Text style={{fontSize:25}}>CADASTRAR NOVO GRUPO</Text>
+                        <View style={{height:30}} />
+                          <Text style={{fontSize:20, alignItems: 'center'}}>{message}</Text>
+                        <View style={{height:20}} />
+                        <TextInput style={styles.input} value={nameGroup} placeholder={'Informe o nome do grupo'} onChangeText={setNameGroup}/>
+                        <View style={{height:20}} />
+                   
+                        <Button acao={() => { registerGroup() }} largura={320} altura={45} titulo={'CONFIRMAR'}></Button>
+                    </View> 
+                </ScrollView>
+
             </KeyboardAvoidingView>
             <Footer />
           </View>
