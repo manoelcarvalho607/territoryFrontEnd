@@ -14,7 +14,7 @@ import { Alert } from 'react-native';
 
 
 
-export default function CardCenterInput({ titulo, dados, onPress, onAutentica, onRecuperar, onPressVoltar, onPressCadastrar,  onTelefoneChange, onSenhaChange, tela, nome }){
+export default function CardCenterInput({ titulo, dados, onPress, onAutentica, onRecuperar, onPressVoltar, onPressCadastrar,  onTelefoneChange, onSenhaChange, tela, nameUser }){
 
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
@@ -44,7 +44,7 @@ export default function CardCenterInput({ titulo, dados, onPress, onAutentica, o
 
           tela === 'senha' ?
             <View style={{width:'100%', alignItems:'center'}}>
-              <Text style={styles.cardTitle}>{"Olá "+nome}</Text>
+              <Text style={styles.cardTitle}>{"Olá "+ nameUser}</Text>
               <TextInput style={styles.input} secureTextEntry value={senha} onChangeText={handleSenhaChange} placeholder={dados}/>
               <View style={{height:65}} />
               <View style={{flexDirection:'row'}}>

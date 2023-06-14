@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Platform, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView,ImageBackground,Image, Alert, View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import Header from '../Componentes/Header';
+import HeaderMain from '../Componentes/HeaderMain';
 import Login from '../Componentes/Login';
 import styles from './style';
 import Footer from '../Componentes/Footer';
@@ -15,17 +15,17 @@ export default function RegisterUser({ navigation }) {
   const [carga, setCarga] = useState(false);
   const { width, height } = Dimensions.get('window');
 
-  const [name, setName] = useState('');
+  const [nameUser, setNameUser] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [groupId, setGroupId] = useState('');
+  const [numberCong, setNumberCong] = useState('');
   const [schema, setSchema] = useState('');
   const [message, setMessage] = useState('');
 
   function registerUser() {
-    if(name === '') {
+    if(nameUser === '') {
       Alert.alert("Informe Seu Nome");
       return;
     }
@@ -45,8 +45,8 @@ export default function RegisterUser({ navigation }) {
       return;
     }
 
-    if(groupId === '') {
-      Alert.alert("Informe Seu Grupo");
+    if(numberCong === '') {
+      Alert.alert("Informe o número da congregação");
       return;
     }
 
@@ -65,14 +65,14 @@ export default function RegisterUser({ navigation }) {
       return;
     }
     
-
-    console.log("dados :" + name,email,phone,schema,groupId,password)
+    // api
+    console.log("dados :" + nameUser,email,phone,schema,numberCong,password)
     setMessage("Cadastro feito com sucesso!");
-    setName('');
+    setNameUser('');
     setEmail('');
     setPhone('');
     setSchema('');
-    setGroupId('');
+    setNumberCong('');
     setPassword('');
     setPassword2('');
     setTimeout(() => {
@@ -89,13 +89,13 @@ export default function RegisterUser({ navigation }) {
     //     //,'Authorization': 'Bearer ' + token // opcional, caso o serviço exija autenticação
     //   },
     //   body: JSON.stringify({
-    //     id : perfilUsuario.id,
-    //     idEmpresa : perfilUsuario.idEmpresa,
-    //     perfil : perfilUsuario.perfil,
-    //     cadastroValido : perfilUsuario.cadastroValido,
-    //     dataUltimoAcesso : perfilUsuario.dataUltimoAcesso,
-    //     dataCadastro : perfilUsuario.dataCadastro,
-    //     secreta : perfilUsuario.secreta,
+    //     id : perfilUser.id,
+    //     idEmpresa : perfilUser.idEmpresa,
+    //     perfil : perfilUser.perfil,
+    //     cadastroValido : perfilUser.cadastroValido,
+    //     dataUltimoAcesso : perfilUser.dataUltimoAcesso,
+    //     dataCadastro : perfilUser.dataCadastro,
+    //     secreta : perfilUser.secreta,
     //     telefone : telefone,
     //     nome : nome,
     //     senha : senha,
@@ -104,12 +104,12 @@ export default function RegisterUser({ navigation }) {
     // })
     // .then(() => {
     //     setCarga(false); 
-    //     let perfil = perfilUsuario;
+    //     let perfil = perfilUser;
     //     perfil.nome = nome;
     //     perfil.telefone = telefone;
     //     perfil.senha = senha;
     //     perfil.email = email;
-    //     setPerfilUsuario(perfil);
+    //     setPerfilUser(perfil);
     //     navigation.navigate('Menu');
     //   })
     // .catch(error => {Alert.alert(error);setCarga(false); return});
@@ -124,7 +124,7 @@ export default function RegisterUser({ navigation }) {
             (<View></View>)
           } 
           <View style={{flex:1}}>
-            <Header navigation={navigation}/>
+            <HeaderMain navigation={navigation}/>
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -130} >
                <ScrollView>
                     <View style={styles.container}>
@@ -133,7 +133,7 @@ export default function RegisterUser({ navigation }) {
                               <View style={{height:30}} />
                               <Text style={{fontSize:20, alignItems: 'center'}}>{message}</Text>
                               <View style={{height:20}} />
-                              <TextInput style={styles.input} value={name} placeholder={'Informe Seu Nome'} onChangeText={setName}/>
+                              <TextInput style={styles.input} value={nameUser} placeholder={'Informe Seu Nome'} onChangeText={setNameUser}/>
                               <View style={{height:20}} />
                               <TextInput style={styles.input} value={email} placeholder={'Informe Seu Email'} onChangeText={setEmail} />
                               <View style={{height:20}} />
@@ -141,7 +141,7 @@ export default function RegisterUser({ navigation }) {
                               <View style={{height:20}} />
                               <TextInput style={styles.input} value={schema} placeholder={'Informe perfil: admin ou user'} onChangeText={setSchema} />
                               <View style={{height:20}} />
-                              <TextInput style={styles.input} value={groupId} placeholder={'Informe seu grupo'} onChangeText={setGroupId} />
+                              <TextInput style={styles.input} value={numberCong} placeholder={'Informe o número da congregação'} onChangeText={setNumberCong} />
                               <View style={{height:20}} />
                               <TextInput style={styles.input} secureTextEntry value={password} placeholder={'Informe sua Senha'} onChangeText={setPassword}/>
                               <View style={{height:20}} />

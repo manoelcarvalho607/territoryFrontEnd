@@ -15,13 +15,14 @@ const { width, height } = Dimensions.get('window');
 export default function Home({navigation}) {
 
 
-  const usuario = [{id: 1, nome: 'Robério', phone: '14997607802', senha: '12345', schema: 'user'},
-                  {id: 2, nome: 'jonata', phone: '14997607801', senha: '1234', schema: 'admin'}]
+  const usuario = [{id: 1, nameUser: 'Robério', email: 'roberio@gmail.com', phone: '14997607802', schema: 'admin', numberCong: '69100', senha: '12345' },
+                  {id: 2, nameUser: 'jonathan', email: 'jonathan@gmail.com', phone: '14997607801', schema: 'admin', numberCong: '69200', senha: '1234' },
+                  {id: 3, nameUser: 'Alcides', email: 'alcides@gmail.com', phone: '14997607803', schema: 'user', numberCong: '69100', senha: '123456' }]
     
     const [carga, setCarga] = useState(false);
     const [telefone, setTelefone] = useState('');
     const [senha, setSenha] = useState('');
-    const {perfilUsuario, setPerfilUsuario, auth, setAuth} = useContext(GlobalContext);
+    const {perfilUser, setPerfilUser, auth, setAuth} = useContext(GlobalContext);
 
     const handleTelefoneChange = (novoTelefone) => {
         setTelefone(novoTelefone);
@@ -51,13 +52,13 @@ export default function Home({navigation}) {
 
         if(telefoneLimpo != response) {
           Alert.alert("Usuário não cadastrado!");
-          setCarga(true);
+         // setCarga(true);
         } else {
           usuario.filter(item => item.phone === telefoneLimpo)
              .map((user) => {
-              setCarga(false);
+             // setCarga(false);
               setTelefone(user.phone);
-              setPerfilUsuario(user);
+              setPerfilUser(user);
               setAuth(user.schema);
               console.log("dados: " + JSON.stringify(user))
              })
@@ -71,7 +72,7 @@ export default function Home({navigation}) {
         //   .then(response => response.json())
         //   .then(json => {
         //       if(json.cadastroValido === 1) {
-        //         setPerfilUsuario(json); 
+        //         setPerfilUser(json); 
         //         setCarga(false);
         //       } else {
         //         setCarga(false);
@@ -85,8 +86,8 @@ export default function Home({navigation}) {
       }
 
       function validarSenha(novaSenha) {
-        console.log("senha: " + perfilUsuario.senha)
-        if(novaSenha === perfilUsuario.senha) {
+        console.log("senha: " + perfilUser.senha)
+        if(novaSenha === perfilUser.senha) {
           navigation.navigate('Menu');
         } else {
           Alert.alert("Senha Inválida");
@@ -112,7 +113,7 @@ export default function Home({navigation}) {
                 <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -210} >
                 <ScrollView contentContainerStyle={{ flexGrow: 1, width : '100%'}} keyboardShouldPersistTaps='handled'>
                     <ImageBackground source={map} style={{width : width,height : height-250,top : -10,alignItems:'center', resizeMode : 'cover'}}>
-                        {perfilUsuario === null ? (
+                        {perfilUser === null ? (
 
                                 <View style={{flex:1, justifyContent : 'flex-end', width: '100%', alignItems:'center'}}>
                                     <Login titulo={'L O G I N'} dados={'Informe Seu Telefone'} 
@@ -126,7 +127,7 @@ export default function Home({navigation}) {
                                 ) : ( 
 
                                 <View style={{flex:1, justifyContent : 'flex-end', width: '100%', alignItems:'center'}}>
-                                <CardCenterInput nome={perfilUsuario.nome} titulo={'BEM VINDO'} dados={'Informe Sua Senha'} 
+                                <CardCenterInput nameUser={perfilUser.nameUser} titulo={'BEM VINDO'} dados={'Informe Sua Senha'} 
                                 onAutentica={() => {validarSenha(senha)}} onRecuperar={() => { recuperarSenha() }} onSenhaChange={handleSenhaChange} tela={'senha'} />
                                 </View>
 

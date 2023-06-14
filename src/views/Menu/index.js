@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Platform, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView,ImageBackground,Image, Alert, View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import Header from '../Componentes/Header';
+import HeaderMain from '../Componentes/HeaderMain';
 import Login from '../Componentes/Login';
 import Styles from './style';
 import Footer from '../Componentes/Footer';
@@ -15,7 +15,7 @@ export default function Menu({ navigation }){
   
   const [carga, setCarga] = useState(false);
   const { width, height } = Dimensions.get('window');
-  const {perfilUsuario, setPerfilUsuario, setIconLogout, auth, setAuth, authTrue, setAuthTrue} = useContext(GlobalContext);
+  const {perfilUser, setPerfilUser, setIconLogout, auth, setAuth, authTrue, setAuthTrue} = useContext(GlobalContext);
   const [tamanhoCard, setTamanhoCard] = useState(132);
   const [espaco, setEspaco] = useState(18);
   const [os, setOs] = useState('ios');
@@ -75,7 +75,7 @@ export default function Menu({ navigation }){
             (<View></View>)
           } 
           <View style={{flex:1}}>
-            <Header navigation={navigation}/>
+            <HeaderMain navigation={navigation}/>
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={os === 'IOS' ? 50 : -130} >
                 <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent:'center'}} keyboardShouldPersistTaps='handled'>
                   { authTrue ? (

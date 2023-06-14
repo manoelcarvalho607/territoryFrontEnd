@@ -54,11 +54,20 @@ export default function Header({navigation, option}) {
                  </View>
                     ) :(<View></View>) } 
                
+                    
+
                     <View style={styles.box} >
-                        <Text style={styles.font}>MAPA DE TERRITÓRIO</Text>
+                        <Text style={styles.font}>Usuário: {perfilUser.nameUser} </Text>
+                    </View>
+                    <View>
+                        <Text style={styles.font}> Nº {perfilUser.numberCong} </Text>
                     </View>
 
-                  
+                    <View style={styles.notification} >
+                        <TouchableOpacity  activeOpacity = { .5 } onPress={notificacao}>
+                            <Image source={statusSino === 2 ? iconRed  : iconsBrown } style={styles.notification}></Image>
+                        </TouchableOpacity>
+                    </View>
             </View>
     </View>
     )

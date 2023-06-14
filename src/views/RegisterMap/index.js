@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Platform, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView,ImageBackground,Image, Alert, View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import Header from '../Componentes/Header';
+import HeaderMain from '../Componentes/HeaderMain';
 import Login from '../Componentes/Login';
 import styles from './style';
 import Footer from '../Componentes/Footer';
@@ -19,6 +19,7 @@ export default function RegisterMap({ navigation }) {
   const {image, setImage} = useContext(GlobalContext);
   const [nameNeighborhood, setNameNeighborhood] = useState('');
   const [numberMap, setNumberMap] = useState('');
+  const [nameGroup, setNameGroup] = useState('');
   const [message, setMessage] = useState('');
 
   const registerMap = () => {
@@ -38,8 +39,13 @@ export default function RegisterMap({ navigation }) {
       return;
     }
 
- 
+    if(nameGroup === '') {
+      Alert.alert("Selecione um grupo");
+      return;
+    }
 
+ 
+    //cadastrar na api
     console.log(image)
     console.log(nameNeighborhood)
     console.log(numberMap)
@@ -48,7 +54,7 @@ export default function RegisterMap({ navigation }) {
     setImage(null)
     setNameNeighborhood('')
     setNumberMap('')
-
+    setNameGroup('')
 
     setTimeout(() => {
       navigation.navigate('Menu');
@@ -64,13 +70,13 @@ export default function RegisterMap({ navigation }) {
     //     //,'Authorization': 'Bearer ' + token // opcional, caso o serviço exija autenticação
     //   },
     //   body: JSON.stringify({
-    //     id : perfilUsuario.id,
-    //     idEmpresa : perfilUsuario.idEmpresa,
-    //     perfil : perfilUsuario.perfil,
-    //     cadastroValido : perfilUsuario.cadastroValido,
-    //     dataUltimoAcesso : perfilUsuario.dataUltimoAcesso,
-    //     dataCadastro : perfilUsuario.dataCadastro,
-    //     secreta : perfilUsuario.secreta,
+    //     id : perfilUser.id,
+    //     idEmpresa : perfilUser.idEmpresa,
+    //     perfil : perfilUser.perfil,
+    //     cadastroValido : perfilUser.cadastroValido,
+    //     dataUltimoAcesso : perfilUser.dataUltimoAcesso,
+    //     dataCadastro : perfilUser.dataCadastro,
+    //     secreta : perfilUser.secreta,
     //     telefone : telefone,
     //     nome : nome,
     //     senha : senha,
@@ -79,12 +85,12 @@ export default function RegisterMap({ navigation }) {
     // })
     // .then(() => {
     //     setCarga(false); 
-    //     let perfil = perfilUsuario;
+    //     let perfil = perfilUser;
     //     perfil.nome = nome;
     //     perfil.telefone = telefone;
     //     perfil.senha = senha;
     //     perfil.email = email;
-    //     setPerfilUsuario(perfil);
+    //     setPerfilUser(perfil);
     //     navigation.navigate('Menu');
     //   })
     // .catch(error => {Alert.alert(error);setCarga(false); return});
@@ -100,7 +106,7 @@ export default function RegisterMap({ navigation }) {
             (<View></View>)
           } 
           <View style={{flex:1}}>
-            <Header navigation={navigation}/>
+            <HeaderMain navigation={navigation}/>
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -130} >
             <ScrollView>
                <View style={styles.container}>
@@ -111,6 +117,8 @@ export default function RegisterMap({ navigation }) {
                   <TextInput style={styles.input} value={nameNeighborhood} placeholder={'Informe o nome do bairro'} onChangeText={setNameNeighborhood}/>
                   <View style={{height:20}} />
                   <TextInput style={styles.input} value={numberMap} placeholder={'Informe o número do mapa'} onChangeText={setNumberMap}/>
+                  <View style={{height:20}} />
+                  <TextInput style={styles.input} value={nameGroup} placeholder={'selecione o grupo'} onChangeText={setNameGroup}/>
                   <View style={{height:20}} />
                   <Text style={{fontSize:20, alignItems: 'center'}}>{message}</Text>
                   <View style={{height:20}} />

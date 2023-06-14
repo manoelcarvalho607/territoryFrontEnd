@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Platform, StyleSheet, Dimensions, TextInput, KeyboardAvoidingView,ImageBackground,Image, Alert, View, Text, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import Header from '../Componentes/Header';
+import HeaderMain from '../Componentes/HeaderMain';
 import Login from '../Componentes/Login';
 import styles from './style';
 import Footer from '../Componentes/Footer';
@@ -16,6 +16,7 @@ export default function RegisterGroup({ navigation }) {
   const { width, height } = Dimensions.get('window');
   const [ nameGroup, setNameGroup] = useState('');
   const [message, setMessage] = useState('');
+  const [numberCong, setNumberCong] = useState('');
 
   function registerGroup() {
     if(nameGroup === '') {
@@ -23,12 +24,18 @@ export default function RegisterGroup({ navigation }) {
       return;
     }
 
-    
+    if(numberCong === '') {
+      Alert.alert("Informe o número da congregação");
+      return;
+    }
 
-    console.log("dados :" + nameGroup)
+    
+    // cadastrar na api
+    console.log("dados :" + nameGroup , numberCong);
     setMessage("Cadastro feito com sucesso!");
     setNameGroup('');
-   
+    setNumberCong('');
+
     setTimeout(() => {
       navigation.navigate('Menu');
       setMessage('');
@@ -43,13 +50,13 @@ export default function RegisterGroup({ navigation }) {
     //     //,'Authorization': 'Bearer ' + token // opcional, caso o serviço exija autenticação
     //   },
     //   body: JSON.stringify({
-    //     id : perfilUsuario.id,
-    //     idEmpresa : perfilUsuario.idEmpresa,
-    //     perfil : perfilUsuario.perfil,
-    //     cadastroValido : perfilUsuario.cadastroValido,
-    //     dataUltimoAcesso : perfilUsuario.dataUltimoAcesso,
-    //     dataCadastro : perfilUsuario.dataCadastro,
-    //     secreta : perfilUsuario.secreta,
+    //     id : perfilUser.id,
+    //     idEmpresa : perfilUser.idEmpresa,
+    //     perfil : perfilUser.perfil,
+    //     cadastroValido : perfilUser.cadastroValido,
+    //     dataUltimoAcesso : perfilUser.dataUltimoAcesso,
+    //     dataCadastro : perfilUser.dataCadastro,
+    //     secreta : perfilUser.secreta,
     //     telefone : telefone,
     //     nome : nome,
     //     senha : senha,
@@ -58,12 +65,12 @@ export default function RegisterGroup({ navigation }) {
     // })
     // .then(() => {
     //     setCarga(false); 
-    //     let perfil = perfilUsuario;
+    //     let perfil = perfilUser;
     //     perfil.nome = nome;
     //     perfil.telefone = telefone;
     //     perfil.senha = senha;
     //     perfil.email = email;
-    //     setPerfilUsuario(perfil);
+    //     setPerfilUser(perfil);
     //     navigation.navigate('Menu');
     //   })
     // .catch(error => {Alert.alert(error);setCarga(false); return});
@@ -78,7 +85,7 @@ export default function RegisterGroup({ navigation }) {
             (<View></View>)
           } 
           <View style={{flex:1}}>
-            <Header navigation={navigation}/>
+            <HeaderMain navigation={navigation}/>
             <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -130} >
                 <ScrollView contentContainerStyle={{ flexGrow: 1}} keyboardShouldPersistTaps='handled'>
                     <View style={{alignItems:'center', marginTop:20}}>
@@ -88,7 +95,8 @@ export default function RegisterGroup({ navigation }) {
                         <View style={{height:20}} />
                         <TextInput style={styles.input} value={nameGroup} placeholder={'Informe o nome do grupo'} onChangeText={setNameGroup}/>
                         <View style={{height:20}} />
-                   
+                        <TextInput style={styles.input} value={numberCong} placeholder={'Informe o Nº da congregação'} onChangeText={setNumberCong}/>
+                        <View style={{height:20}} />
                         <Button acao={() => { registerGroup() }} largura={320} altura={45} titulo={'CONFIRMAR'}></Button>
                     </View> 
                 </ScrollView>

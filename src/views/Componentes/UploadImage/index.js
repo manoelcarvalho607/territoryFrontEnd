@@ -35,13 +35,6 @@ const UploadImage = () => {
                 </View>
             }
         </TouchableOpacity>
-        {/* <View style={styles.box1}>
-            {image && <Image source={{ uri: image }} style={{ width: 300, height: 200 }} />}
-        </View>
-        <View style={styles.box2}>
-            <Button titulo="Upload do mapa" acao={pickImage} largura={200} altura={40} />
-        </View> */}
-        
       </View>
     );
 
