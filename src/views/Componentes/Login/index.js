@@ -6,22 +6,22 @@ import Button from '../Button';
 
 
 
-export default function Login({titulo, dados, onCadastrar, onLogar, onTelefoneChange, onSenhaChange}) {
+export default function Login({titulo, dados, onCadastrar, onLogar, onPhoneChange, onPasswordChange}) {
 
-    const [telefone, setTelefone] = useState('');
-    const [senha, setSenha] = useState('');
+    const [phoneLocal, setPhoneLocal] = useState('');
+    const [password, setPassword] = useState('');
   
-    const handleTelefoneChange = (novoTelefone) => {
-        setTelefone(novoTelefone);
-        onTelefoneChange(novoTelefone)
+    const handlePhoneChange = (newPhone) => {
+        setPhoneLocal(newPhone);
+        onPhoneChange(newPhone)
         // if (typeof onTelefoneChange === 'function') {
         //     onTelefoneChange(novoTelefone);
         // }
     };
   
-    const handleSenhaChange = (novaSenha) => {
-        setSenha(novaSenha);
-        onSenhaChange(novaSenha)
+    const handlePasswordChange = (newPassword) => {
+        setPassword(newPassword);
+        onPasswordChange(newPassword)
         // if (typeof onSenhaChange === 'function') {
         //     onSenhaChange(novaSenha);
         // }
@@ -42,8 +42,8 @@ export default function Login({titulo, dados, onCadastrar, onLogar, onTelefoneCh
                     dddMask: '(99) ', 
                 }}
                 returnKeyType="done"
-                value={telefone}
-                onChangeText={handleTelefoneChange}
+                value={phoneLocal}
+                onChangeText={handlePhoneChange}
                 style={styles.input} placeholder={dados} />
             </View>
             <View style={{height:35}} />

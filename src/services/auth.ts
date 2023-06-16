@@ -1,24 +1,24 @@
-interface Response {
-  token: string;
-  user: {
-    name: string;
-    phone: string;
-  };
-}
+// interface Response {
+//   token: string;
+//   user: {
+//     name: string;
+//     phone: string;
+//   };
+// }
 
 
 
 
-export function signIn(): Promise<Response> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          token: 'jk12h3j21h3jk212h3jk12h3jkh12j3kh12k123hh21g3f12f3',
-          user: {
-            name: 'Manoel',
-            phone: '14997607802'
-          },
-        });
-      }, 2000);
-    });
-  }
+// export function signIn(): Promise<Response> {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve({
+//           token: 'jk12h3j21h3jk212h3jk12h3jkh12j3kh12k123hh21g3f12f3',
+//           user: {
+//             name: 'Manoel',
+//             phone: '14997607802'
+//           },
+//         });
+//       }, 2000);
+//     });
+//   }

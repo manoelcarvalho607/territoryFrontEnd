@@ -12,9 +12,11 @@ import Button from '../Componentes/Button';
 
 export default function RegisterGroup({ navigation }) {
 
+  const {perfilUser} = useContext(GlobalContext);
   const [carga, setCarga] = useState(false);
   const { width, height } = Dimensions.get('window');
   const [ nameGroup, setNameGroup] = useState('');
+  const [ numberCong, setNumberCong] = useState('');
   const [message, setMessage] = useState('');
 
   function registerGroup() {
@@ -25,7 +27,7 @@ export default function RegisterGroup({ navigation }) {
 
     
 
-    console.log("dados :" + nameGroup)
+    console.log("dados :" + nameGroup , perfilUser.numberCong)
     setMessage("Cadastro feito com sucesso!");
     setNameGroup('');
    
@@ -87,6 +89,8 @@ export default function RegisterGroup({ navigation }) {
                           <Text style={{fontSize:20, alignItems: 'center'}}>{message}</Text>
                         <View style={{height:20}} />
                         <TextInput style={styles.input} value={nameGroup} placeholder={'Informe o nome do grupo'} onChangeText={setNameGroup}/>
+                        <View style={{height:20}} />
+                        <View style={styles.input}><Text style={styles.box}>Nº Cong: {perfilUser.numberCong}</Text></View>
                         <View style={{height:20}} />
                    
                         <Button acao={() => { registerGroup() }} largura={320} altura={45} titulo={'CONFIRMAR'}></Button>

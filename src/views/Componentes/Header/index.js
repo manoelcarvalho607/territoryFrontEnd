@@ -11,14 +11,14 @@ import iconRed from '../../../../assets/iconRed.png';
 
 export default function Header({navigation, option}) {
     const { statusSino, setStatusSino, auth, setAuth, authTrue, setAuthTrue,
-        perfilUsuario, setPerfilUsuario, iconLogout, setIconLogout} = useContext(GlobalContext);
+        perfilUser, setPerfilUser, iconLogout, setIconLogout} = useContext(GlobalContext);
    
     
 
 
     function logout() {
         navigation.navigate('Home')
-        setPerfilUsuario(null);
+        setPerfilUser(null);
         setIconLogout(false);
         setAuth('');
         setAuthTrue(false);

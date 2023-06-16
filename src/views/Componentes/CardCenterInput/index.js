@@ -14,22 +14,22 @@ import { Alert } from 'react-native';
 
 
 
-export default function CardCenterInput({ titulo, dados, onPress, onAutentica, onRecuperar, onPressVoltar, onPressCadastrar,  onTelefoneChange, onSenhaChange, tela, nome }){
+export default function CardCenterInput({ titulo, dados, onPress, onAutentica, onRecuperar, onPressVoltar, onPressCadastrar,  onPhoneChange, onPasswordChange, tela, nameUser }){
 
-  const [telefone, setTelefone] = useState('');
-  const [senha, setSenha] = useState('');
+  const [localPhone, setLocalPhone] = useState('');
+  const [localPassword, setLocalPassword] = useState('');
 
-  const handleTelefoneChange = (novoTelefone) => {
-    setTelefone(novoTelefone);
-    onTelefoneChange(novoTelefone)
+  const handlePhoneChange = (newPhone) => {
+    setLocalPhone(newPhone);
+    onPhoneChange(newPhone)
       // if (typeof onTelefoneChange === 'function') {
       //     onTelefoneChange(novoTelefone);
       // }
   };
 
-  const handleSenhaChange = (novaSenha) => {
-    setSenha(novaSenha);
-    onSenhaChange(novaSenha)
+  const handlePasswordChange = (newPassword) => {
+    setLocalPassword(newPassword);
+    onPasswordChange(newPassword)
       // if (typeof onSenhaChange === 'function') {
       //     onSenhaChange(novaSenha);
       // }
@@ -44,8 +44,8 @@ export default function CardCenterInput({ titulo, dados, onPress, onAutentica, o
 
           tela === 'senha' ?
             <View style={{width:'100%', alignItems:'center'}}>
-              <Text style={styles.cardTitle}>{"Olá "+nome}</Text>
-              <TextInput style={styles.input} secureTextEntry value={senha} onChangeText={handleSenhaChange} placeholder={dados}/>
+              <Text style={styles.cardTitle}>{"Olá "+nameUser}</Text>
+              <TextInput style={styles.input} secureTextEntry value={localPassword} onChangeText={handlePasswordChange} placeholder={dados}/>
               <View style={{height:65}} />
               <View style={{flexDirection:'row'}}>
                   {/* <Botao acao={onRecuperar} largura={150} altura={45} titulo={'RECUPERAR'}></Botao>

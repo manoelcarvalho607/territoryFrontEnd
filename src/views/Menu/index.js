@@ -15,7 +15,7 @@ export default function Menu({ navigation }){
   
   const [carga, setCarga] = useState(false);
   const { width, height } = Dimensions.get('window');
-  const {perfilUsuario, setPerfilUsuario, setIconLogout, auth, setAuth, authTrue, setAuthTrue} = useContext(GlobalContext);
+  const {perfilUser, setPerfilUser, setIconLogout, auth, setAuth, authTrue, setAuthTrue} = useContext(GlobalContext);
   const [tamanhoCard, setTamanhoCard] = useState(132);
   const [espaco, setEspaco] = useState(18);
   const [os, setOs] = useState('ios');

@@ -18,7 +18,7 @@ export default function  PopupRequestMap({ titulo, acao}) {
     const [lista, setLista] = useState([]);
 
     const [contadorQuant, setContadorQuant] = useState(0);
-    const { modalVisible, setModalVisible, perfilUsuario} = useContext(GlobalContext);
+    const { modalVisible, setModalVisible, perfilUser} = useContext(GlobalContext);
     
 
 

@@ -9,7 +9,7 @@ import botao from '../../../../assets/button80.png';
 export default function FooterMenu({}){
 
     const[keyboardOpen, setKeyboardOpen] = useState(false);
-    const { modalVisible, setModalVisible, perfilUsuario} = useContext(GlobalContext);
+    const { modalVisible, setModalVisible, perfilUser} = useContext(GlobalContext);
 
     const isKeyboardOpen = Keyboard.addListener('keyboardDidShow', () => {
         setKeyboardOpen(true);

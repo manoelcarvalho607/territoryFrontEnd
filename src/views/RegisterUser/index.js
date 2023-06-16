@@ -20,7 +20,7 @@ export default function RegisterUser({ navigation }) {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [groupId, setGroupId] = useState('');
+  const [numberCong, setNumberCong] = useState('');
   const [schema, setSchema] = useState('');
   const [message, setMessage] = useState('');
 
@@ -45,8 +45,8 @@ export default function RegisterUser({ navigation }) {
       return;
     }
 
-    if(groupId === '') {
-      Alert.alert("Informe Seu Grupo");
+    if(numberCong === '') {
+      Alert.alert("Informe o numero da sua congregação");
       return;
     }
 
@@ -66,13 +66,13 @@ export default function RegisterUser({ navigation }) {
     }
     
 
-    console.log("dados :" + name,email,phone,schema,groupId,password)
+    console.log("dados :" + name,email,phone,schema,numberCong,password)
     setMessage("Cadastro feito com sucesso!");
     setName('');
     setEmail('');
     setPhone('');
     setSchema('');
-    setGroupId('');
+    setNumberCong('');
     setPassword('');
     setPassword2('');
     setTimeout(() => {
@@ -141,7 +141,7 @@ export default function RegisterUser({ navigation }) {
                               <View style={{height:20}} />
                               <TextInput style={styles.input} value={schema} placeholder={'Informe perfil: admin ou user'} onChangeText={setSchema} />
                               <View style={{height:20}} />
-                              <TextInput style={styles.input} value={groupId} placeholder={'Informe seu grupo'} onChangeText={setGroupId} />
+                              <TextInput style={styles.input} value={numberCong} placeholder={'Informe numero da congregação'} onChangeText={setNumberCong} />
                               <View style={{height:20}} />
                               <TextInput style={styles.input} secureTextEntry value={password} placeholder={'Informe sua Senha'} onChangeText={setPassword}/>
                               <View style={{height:20}} />

@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
         elevation: 15,
         borderRadius: 14
       },
-      box2: {
-        backgroundColor: 'black',
-        width: 200,
-        height: 50
-      },
       input: {
         backgroundColor: '#fff',
         borderRadius: 10,

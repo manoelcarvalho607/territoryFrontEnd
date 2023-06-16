@@ -15,49 +15,49 @@ const { width, height } = Dimensions.get('window');
 export default function Home({navigation}) {
 
 
-  const usuario = [{id: 1, nome: 'Robério', phone: '14997607802', senha: '12345', schema: 'user'},
-                  {id: 2, nome: 'jonata', phone: '14997607801', senha: '1234', schema: 'admin'}]
+  const usuario = [{id: 1, nameUser: 'Robério', email: 'roberio@gmail.com', phone: '14997607802', password: '12345', schema: 'user', numberCong: '1100'},
+                  {id: 2, nameUser: 'jonathan', email: 'jonathan@gmail.com', phone: '14997607801', password: '1234', schema: 'admin' , numberCong: '1200'}]
     
     const [carga, setCarga] = useState(false);
-    const [telefone, setTelefone] = useState('');
-    const [senha, setSenha] = useState('');
-    const {perfilUsuario, setPerfilUsuario, auth, setAuth} = useContext(GlobalContext);
+    const [localPhone, setLocalPhone] = useState('');
+    const [localPassword, setLocalPassword] = useState('');
+    const {perfilUser, setPerfilUser, auth, setAuth} = useContext(GlobalContext);
 
-    const handleTelefoneChange = (novoTelefone) => {
-        setTelefone(novoTelefone);
+    const handlePhoneChange = (newPhone) => {
+        setLocalPhone(newPhone);
       }
 
-    const handleSenhaChange = (novaSenha) => {
-        setSenha(novaSenha);
+    const handlePasswordChange = (newPassword) => {
+        setLocalPassword(newPassword);
       }
 
-    function login(telefone) {
+    function login(localPhone) {
         
-        if(telefone === '') {
+        if(localPhone === '') {
             Alert.alert("Informe o Telefone");
             return;
         }
-        const telefoneLimpo = telefone.replace(/\D/g, '');
-        if(telefoneLimpo.length <= 9) {
+        const cleanPhone = localPhone.replace(/\D/g, '');
+        if(cleanPhone.length <= 9) {
             Alert.alert("Informe o Telefone Completo");
             return;
         }
 
         // const url1 = api+"/perfil/buscaportelefone/"+telefoneLimpo;
 
-        response = usuario.filter(item => item.phone === telefoneLimpo)
+        response = usuario.filter(item => item.phone === cleanPhone)
                             .map((item) => item.phone)
           console.log(response)
 
-        if(telefoneLimpo != response) {
+        if(cleanPhone != response) {
           Alert.alert("Usuário não cadastrado!");
-          setCarga(true);
+          //setCarga(true);
         } else {
-          usuario.filter(item => item.phone === telefoneLimpo)
+          usuario.filter(item => item.phone === cleanPhone)
              .map((user) => {
-              setCarga(false);
-              setTelefone(user.phone);
-              setPerfilUsuario(user);
+             // setCarga(false);
+              setLocalPhone(user.phone);
+              setPerfilUser(user);
               setAuth(user.schema);
               console.log("dados: " + JSON.stringify(user))
              })
@@ -65,13 +65,11 @@ export default function Home({navigation}) {
         }
       
     
-       
-
         // fetch(url1)
         //   .then(response => response.json())
         //   .then(json => {
         //       if(json.cadastroValido === 1) {
-        //         setPerfilUsuario(json); 
+        //         setPerfilUser(json); 
         //         setCarga(false);
         //       } else {
         //         setCarga(false);
@@ -82,11 +80,13 @@ export default function Home({navigation}) {
         //         Alert.alert("Usuário Não Encontrado");
         //         setCarga(false);   
         //   });
+
+
       }
 
-      function validarSenha(novaSenha) {
-        console.log("senha: " + perfilUsuario.senha)
-        if(novaSenha === perfilUsuario.senha) {
+      function validatePassword(newPassword) {
+        console.log("senha: " + perfilUser.password)
+        if(newPassword === perfilUser.password) {
           navigation.navigate('Menu');
         } else {
           Alert.alert("Senha Inválida");
@@ -97,9 +97,9 @@ export default function Home({navigation}) {
     //     navigation.navigate('CadastrarPerfil');
     //   }
 
-      function recuperarSenha() {
-        navigation.navigate('RecuperarSenha',{telefone:telefone});
-      }
+      // function recoverPassword() {
+      //   navigation.navigate('RecuperarSenha',{phone:phone});
+      // }
      
 
     return (
@@ -112,13 +112,13 @@ export default function Home({navigation}) {
                 <KeyboardAvoidingView style={{flex:1}} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : -210} >
                 <ScrollView contentContainerStyle={{ flexGrow: 1, width : '100%'}} keyboardShouldPersistTaps='handled'>
                     <ImageBackground source={map} style={{width : width,height : height-250,top : -10,alignItems:'center', resizeMode : 'cover'}}>
-                        {perfilUsuario === null ? (
+                        {perfilUser === null ? (
 
                                 <View style={{flex:1, justifyContent : 'flex-end', width: '100%', alignItems:'center'}}>
                                     <Login titulo={'L O G I N'} dados={'Informe Seu Telefone'} 
                                   //  onCadastrar={() => cadastrar()}
-                                    onLogar={() => login(telefone)}
-                                    onTelefoneChange={handleTelefoneChange} tela={'telefone'} >
+                                    onLogar={() => login(localPhone)}
+                                    onPhoneChange={handlePhoneChange} tela={'telefone'} >
                                     
                                     </Login>
                                     
@@ -126,8 +126,8 @@ export default function Home({navigation}) {
                                 ) : ( 
 
                                 <View style={{flex:1, justifyContent : 'flex-end', width: '100%', alignItems:'center'}}>
-                                <CardCenterInput nome={perfilUsuario.nome} titulo={'BEM VINDO'} dados={'Informe Sua Senha'} 
-                                onAutentica={() => {validarSenha(senha)}} onRecuperar={() => { recuperarSenha() }} onSenhaChange={handleSenhaChange} tela={'senha'} />
+                                <CardCenterInput nameUser={perfilUser.nameUser} titulo={'BEM VINDO'} dados={'Informe Sua Senha'} 
+                                onAutentica={() => {validatePassword(localPassword)}} onRecuperar={() => { recoverPassword() }} onPasswordChange={handlePasswordChange} tela={'senha'} />
                                 </View>
 
                         )}

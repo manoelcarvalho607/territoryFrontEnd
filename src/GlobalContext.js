@@ -5,7 +5,7 @@ export const GlobalContext = createContext();
 const GlobalContextProvider = ({ children }) => {
     const [globalVariable, setGlobalVariable] = useState('Valor Inicial');
     const [statusSino, setStatusSino] = useState(1);
-    const [perfilUsuario, setPerfilUsuario] = useState(null);
+    const [perfilUser, setPerfilUser] = useState(null);
     const [iconLogout, setIconLogout] = useState(false);
     const [ auth, setAuth] = useState('');
     const [authTrue, setAuthTrue] = useState(false);
@@ -14,7 +14,7 @@ const GlobalContextProvider = ({ children }) => {
     return (
         <GlobalContext.Provider value={{
             globalVariable, setGlobalVariable,
-            perfilUsuario, setPerfilUsuario,
+            perfilUser, setPerfilUser,
             statusSino, setStatusSino,
             iconLogout, setIconLogout,
             auth, setAuth,

@@ -50,7 +50,7 @@ export default function Calendario(){
                 <Text style={styles.box2}>{dataInicio}</Text>
              </View>
             </TouchableOpacity>
-                <Modal transparent visible={showModal}  visible={showModal} animationType="fade">
+                <Modal transparent  visible={showModal} animationType="fade">
                     <SafeAreaView style={{flex:1} }>
                         <View style={styles.container}>
                             <Calendar style={styles.calendar}
