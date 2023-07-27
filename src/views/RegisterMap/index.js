@@ -108,6 +108,7 @@ export default function RegisterMap({ navigation }) {
                       <UploadImage/>
                   </View>
                   <View style={{height: 15}}></View>
+                  <View></View>
                   <TextInput style={styles.input} value={nameNeighborhood} placeholder={'Informe o nome do bairro'} onChangeText={setNameNeighborhood}/>
                   <View style={{height:20}} />
                   <TextInput style={styles.input} value={numberMap} placeholder={'Informe o número do mapa'} onChangeText={setNumberMap}/>
